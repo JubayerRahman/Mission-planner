@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    box-sizing: border-box; padding: 0; margin: 0;
+}
+body{
+    background-color: rgb(19,18,23);
+    font-family: 'Raleway', sans-serif;
+    color: white;
+}
+main{
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.tittle{
+    text-align: center; letter-spacing: 3px; margin-top: 50px; margin-bottom: 20px;
+}
+.formSection{
+    background-color: #24232A; width: 55vw; padding: 20px; border-radius: 10px;
+    display: flex; flex-direction: column; align-items: center;
+}
+.timing{
+    font-weight: 400;
+    text-align: center;
+}
+input{
+    background-color: transparent; padding: 10px; font-size: 20px; color: white; font-family: 'Raleway';
+    outline: none; border: 2px solid #A5FFAF; border-radius: 10px; text-align: center; 
+}
+::placeholder{
+    text-align: center;
+    color: white;
+}
+.mName{
+    width: 80%;
+}
+.mNameError, .mDescriptionError{
+    text-align: left; color: red; font-style: italic; width: 80%;
+}
+.timeSection{
+    width: 80%;
+    padding-top: 20px;
+}
+.inputes{
+    display: flex; width: 100%; padding-top: 20px;
+    justify-content: space-between;
+}
+.mtime{
+    width: 47%; font-family: Arial, Helvetica, sans-serif;
+}
+.SubmitButton{
+    width: 80%; color: #24232A; font-size: 20px; padding: 10px; margin-top: 20px; font-family: 'Raleway';
+    font-weight:600; letter-spacing: 2px; cursor: pointer;
+    border: none; border-radius: 10px; background-color: #A5FFAF;
+}
+.cradit{
+    width: 100%; margin-bottom: 10px;
+    text-align: right;
+}
+.cradit a {
+    background-color: #A5FFAF; color: #24232A; text-decoration: none; padding: 6px; border-radius: 20%;
+    font-size: 10px;
+}
+.results{
+    padding-top: 50px; margin-bottom: 20px;
+}
+.resultTitle{
+    font-weight: 200px; font-size: 40px; padding-bottom: 5px; margin-bottom: 20px;
+    border-bottom: 2px solid #A5FFAF;
+}
+ul{
+    list-style: none; color: white;
+}
+.missions, .defaultDiv{
+    background-color: #24232A; width: 55vw; padding: 10px; border-radius: 5px; font-family: "Raleway";
+    margin-top: 10px; display: flex; justify-content: space-between; align-items: center;
+}
+.defaultDiv{
+    justify-content: center;
+}
+.dataDiv{
+    width: 40%;
+}
+.buttonDiv{
+    width: 20%;
+    display: flex; justify-content: space-evenly;
+}
+.trashButton{
+    color: #A5FFAF; background-color: transparent; font-size: 16px; border: none;cursor: pointer;
+}
+.completeButton{
+    color:white; background-color: transparent; font-size: 16px; border: none; cursor: pointer;
+}
+.missions li, p{
+    padding-top: 10px;
+}
+.selectm{
+    border: 2px solid #A5FFAF; background-color: transparent; padding: 20px; color: white; outline: none;
+    border-radius: 10px; font-size: 20px;
+}
+.selectm > option{
+    color: #24232A;
+}
+.countDownSection{
+    display: flex; justify-content: space-evenly; font-weight: bold; color: #A5FFAF; font-size: 20px;
+}
+.fa-trash-can, .fa-circle-check{
+    pointer-events: none;
+}
+.ClearButton{
+    width: 100%; font-family: "Raleway"; font-size: 18px; letter-spacing: 2px; font-weight:bold; color: #24232A; 
+    background-color: #A5FFAF; margin-top: 20px; padding: 20px; border-radius: 10px; display: none;
+}
+.completeMission{
+    opacity: 0.5;
+    text-decoration: line-through;
+}
+.completeMission>.buttonDiv>.completeButton{
+    display: none;
+}
+/* .completeMission>.buttonDiv>.trashButton{
+    color: #24232A;
+} */
+@media (max-width:768px) {
+    .tittle{
+        font-size: 26px;
+    }
+    .formSection{
+        width: 90vw;
+    }
+    .mName{
+        width: 85%;
+    }
+    .timeSection{
+        width: 85%;
+    }
+    ::placeholder{
+        font-size: 16px;
+    }
+    .missions, .defaultDiv{
+        width: 90vw;
+    }
+    .mNameError, .mDescriptionError{
+        font-size: 13px;
+    }
+    .selectm{
+        font-size: 18px;
+        padding: 10px;
+    }
+}

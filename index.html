@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./images/missionIcon.PNG" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <title>Mission  Planner | Jobayer Rahman</title>
+</head>
+<body>
+    <main>
+        <h1 class="tittle">Mission - Planner</h1>
+        <div class="formSection">
+            <div class="cradit">
+                <a href="https://sidemenuportfolio.netlify.app/" title="About" target="_blank"><i class="fa-solid fa-question"></i></a>
+            </div>
+            <input id="missionName" class="mName" type="text" placeholder="Please enter your misson">
+            <p class="mNameError" id="mNameError"></p>
+            <input id="missionDescription" style="height: 15vh; margin-top: 20px;" class="mName" type="text" 
+            placeholder="Description">
+            <p class="mDescriptionError" id="mDescriptionError"></p>
+        <div class="timeSection">
+            <h2 class="timing">Initiate at:</h2>
+            <div class="inputes">
+                <!-- <input id="day" class="mtime" type="text"  placeholder="Month" > -->
+                <select class="mtime selectm" id="day" aria-placeholder="Month" >
+                    <option value="No month">Month</option>
+                    <option value="Jan">January</option>
+                    <option value="Feb">February</option>
+                    <option value="Mar">March</option>
+                    <option value="Apr">April</option>
+                    <option value="May">May</option>
+                    <option value="June">June</option>
+                    <option value="July">July</option>
+                    <option value="Aug">August</option>
+                    <option value="Sep">September</option>
+                    <option value="Oct">October</option>
+                    <option value="Nov">November</option>
+                    <option value="dec">December</option>
+                </select>
+                <input id="hour" class="mtime" type="number" min="0" placeholder="Day" max="31">
+            </div>
+            <p id="timeError" class="mDescriptionError"></p>
+        </div>
+        <button id="submit" class="SubmitButton">Enter</button>
+        
+        </div>
+        <div class="results" id="results">
+            <p class="resultTitle" id="resultTitle">Tasks: 0</p>
+            <div class="defaultDiv" id="defaultDiv" style="text-align: center;">
+                <p>No Tasks yet.</p>
+            </div>
+            <ul class="missionList" id="missionList">
+            </ul>
+            <button class="ClearButton" id="ClearButton"><i class="fa-solid fa-trash-can"></i> Clear All</button>
+        </div>
+    </main>
+    <!-- main function -->
+    <script src="./script.js"></script>
+    <!-- fontAwsome -->
+    <script src="https://kit.fontawesome.com/c74447f892.js" crossorigin="anonymous"></script>
+</body>
+</html>
