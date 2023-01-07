@@ -55,6 +55,9 @@ submitButton.addEventListener('click', ()=>{
         todoDiv.classList.add('missions')
         const todo = document.createElement('li');
         todo.innerHTML ="Tittle: " + missionName.value;
+        const stupitIdeaP = document.createElement('p')
+        stupitIdeaP.classList.add('stupitIdeaP')
+        stupitIdeaP.innerText=missionName.value;
         const todoDes = document.createElement('p');
         todoDes.innerHTML="Description: " + missionDescription.value;
         const timeTitle = document.createElement('h3')
@@ -80,6 +83,7 @@ submitButton.addEventListener('click', ()=>{
         dataDiv.appendChild(todoDes);
         buttonDiv.appendChild(complete);
         buttonDiv.appendChild(trashCan);
+        trashCan.appendChild(stupitIdeaP);
         timeDiv.appendChild(timeTitle);
         countDownSection.appendChild(hourCount);
         countDownSection.appendChild(divider);
@@ -127,7 +131,7 @@ submitButton.addEventListener('click', ()=>{
                     parenttodo.addEventListener('transitionend',()=>{
                         parenttodo.remove();
                         const missions = document.querySelectorAll('.missions')
-                        console.log(missions.length)
+                        // console.log(missions.length)
                         resultTitle.innerText= "Tasks: "+ (missions.length);
                         if(missions.length===0){
                             clearButton.style.display="none"
@@ -195,14 +199,68 @@ function getTodos() {
         todoDiv.classList.add('missions')
         const dataDiv = document.createElement('div');
         dataDiv.classList.add('dataDiv')
+        const buttonDiv = document.createElement('div');
+        buttonDiv.classList.add('buttonDiv')
         const todo = document.createElement('li');
         todo.innerHTML ="Tittle: " + toNames;
         missionList.appendChild(todo);
+        // Buttons 
+        const complete = document.createElement('button');
+        const trashCan = document.createElement('button');
+        complete.innerHTML= '<i class="fa-solid fa-circle-check"></i>'
+        trashCan.innerHTML= '<i class="fa-solid fa-trash-can"></i>'
+        complete.classList.add('completeButton')
+        trashCan.classList.add('trashButton')
         //adding items on subDiv
         dataDiv.appendChild(todo);
+        buttonDiv.appendChild(complete);
+        buttonDiv.appendChild(trashCan);
         //adding items on main div
         todoDiv.appendChild(dataDiv);
+        todoDiv.appendChild(buttonDiv);
         missionList.appendChild(todoDiv);
+
+        //ADD SINGLE DELETE  BUtton option
+        missionList.addEventListener('click',(e)=>{
+            const item = (e.target)
+            const parenttodo= item.parentElement.parentElement;
+            if(item.classList[0]==='trashButton'){
+                parenttodo.classList.add('delanimation')
+                parenttodo.addEventListener('transitionend',()=>{
+                    parenttodo.remove();
+                    removeFromeLocal();
+                    function removeFromeLocal(){
+                        if (localStorage.getItem('toNames') === null) {
+                            toNames = [];
+                            todescription = [];
+                            tomonth = [];
+                            todate = [];
+                        }
+                        else {
+                            toNames = JSON.parse(localStorage.getItem('toNames'));
+                            todescription = JSON.parse(localStorage.getItem('todescription'));
+                            tomonth = JSON.parse(localStorage.getItem('tomonth'));
+                            todate = JSON.parse(localStorage.getItem('todate'));
+                        }
+                        const todoindex = todo.innerText;
+                    // console.log(todoindex)
+                    toNames.splice(toNames.indexOf(todoindex), 1);
+                    localStorage.setItem('toNames', JSON.stringify(toNames));
+                }
+                const missions = document.querySelectorAll('.missions')
+                    console.log(missions.length)
+                    resultTitle.innerText= "Tasks: "+ (missions.length);
+                    if(missions.length===0){
+                        clearButton.style.display="none"
+                        defaultDiv.style.display="block"
+                    }
+                })
+            }
+            // Add single complete buttion Style
+            if(item.classList[0]==='completeButton'){
+                parenttodo.classList.add('completeMission')
+            }
+        })
 
         const missions = document.querySelectorAll('.missions')
     resultTitle.innerText= "Tasks: "+ missions.length;

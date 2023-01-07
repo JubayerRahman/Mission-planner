@@ -123,6 +123,9 @@ ul{
     transition: 0.5s ease-out;
     opacity: 0;
 }
+.stupitIdeaP{
+    display: none;
+}
 /* .completeMission>.buttonDiv>.trashButton{
     color: #24232A;
 } */
