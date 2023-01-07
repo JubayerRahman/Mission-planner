@@ -113,9 +113,15 @@ ul{
 .completeMission{
     opacity: 0.5;
     text-decoration: line-through;
+    transition: 0.5s ease-in;
 }
 .completeMission>.buttonDiv>.completeButton{
-    display: none;
+    display: none; transition: 0.5s ease-in;
+}
+.delanimation{
+    transform: translateX(100vw);
+    transition: 0.5s ease-out;
+    opacity: 0;
 }
 /* .completeMission>.buttonDiv>.trashButton{
     color: #24232A;

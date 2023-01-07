@@ -13,6 +13,7 @@ const clearButton = document.getElementById('ClearButton')
 const lenth = []
 
 //main submit event
+document.addEventListener('DOMContentLoaded', getTodos);
 
 submitButton.addEventListener('click', ()=>{
     mNameError.innerText=""
@@ -91,6 +92,12 @@ submitButton.addEventListener('click', ()=>{
         todoDiv.appendChild(buttonDiv);
         missionList.appendChild(todoDiv);
 
+        //adding items in the local storage
+        
+        saveLocalTodos(missionName.value , missionDescription.value, hour.value, minute.value);
+        
+
+
         //clean the input Fields
         missionName.value=''
         missionDescription.value=''
@@ -107,21 +114,26 @@ submitButton.addEventListener('click', ()=>{
             console.log(lenth)
             document.getElementById('defaultDiv').style.display="block";
             clearButton.style.display='none'
-            todoDiv.remove(); })
+            todoDiv.remove();
+            localStorage.clear();
+         })
 
             //ADD SINGLE DELETE  BUtton option
             missionList.addEventListener('click',(e)=>{
                 const item = (e.target)
                 const parenttodo= item.parentElement.parentElement;
                 if(item.classList[0]==='trashButton'){
+                    parenttodo.classList.add('delanimation')
+                    parenttodo.addEventListener('transitionend',()=>{
                         parenttodo.remove();
-                    const missions = document.querySelectorAll('.missions')
-                    console.log(missions.length)
-                    resultTitle.innerText= "Tasks: "+ (missions.length);
-                    if(missions.length===0){
-                        clearButton.style.display="none"
-                        defaultDiv.style.display="block"
-                    }
+                        const missions = document.querySelectorAll('.missions')
+                        console.log(missions.length)
+                        resultTitle.innerText= "Tasks: "+ (missions.length);
+                        if(missions.length===0){
+                            clearButton.style.display="none"
+                            defaultDiv.style.display="block"
+                        }
+                    })
                 }
                 // Add single complete buttion Style
                 if(item.classList[0]==='completeButton'){
@@ -131,3 +143,78 @@ submitButton.addEventListener('click', ()=>{
             
 }
 })
+
+function saveLocalTodos(todo, description, month, date) {
+    let toNames;
+    let todescription;
+    let tomonth;
+    let todate;
+    if (localStorage.getItem('toNames') === null) {
+        toNames = [];
+        todescription = [];
+        tomonth = [];
+        todate = [];
+    } 
+    else {
+        toNames = JSON.parse(localStorage.getItem('toNames'));
+        todescription = JSON.parse(localStorage.getItem('todescription'));
+        tomonth = JSON.parse(localStorage.getItem('tomonth'));
+        todate = JSON.parse(localStorage.getItem('todate'));
+    }
+    toNames.push(todo);
+    localStorage.setItem('toNames', JSON.stringify(toNames));
+    todescription.push(description);
+    localStorage.setItem('todescription', JSON.stringify(todescription));
+    tomonth.push(month);
+    localStorage.setItem('tomonth', JSON.stringify(tomonth));
+    todate.push(date);
+    localStorage.setItem('todate', JSON.stringify(todate));
+}
+
+function getTodos() {
+    let toNames;
+    let todescription;
+    let tomonth;
+    let todate;
+    if (localStorage.getItem('toNames') === null) {
+        toNames = [];
+        todescription = [];
+        tomonth = [];
+        todate = [];
+    }
+    else {
+        toNames = JSON.parse(localStorage.getItem('toNames'));
+        todescription = JSON.parse(localStorage.getItem('todescription'));
+        tomonth = JSON.parse(localStorage.getItem('tomonth'));
+        todate = JSON.parse(localStorage.getItem('todate'));
+    }
+    toNames.forEach(function(toNames){
+        clearButton.style.display = 'block'
+    document.getElementById('defaultDiv').style.display="none";
+        const todoDiv = document.createElement('div');
+        todoDiv.classList.add('missions')
+        const dataDiv = document.createElement('div');
+        dataDiv.classList.add('dataDiv')
+        const todo = document.createElement('li');
+        todo.innerHTML ="Tittle: " + toNames;
+        missionList.appendChild(todo);
+        //adding items on subDiv
+        dataDiv.appendChild(todo);
+        //adding items on main div
+        todoDiv.appendChild(dataDiv);
+        missionList.appendChild(todoDiv);
+
+        const missions = document.querySelectorAll('.missions')
+    resultTitle.innerText= "Tasks: "+ missions.length;
+
+    clearButton.addEventListener('click',()=>{
+        lenth.pop(missions.length)
+        resultTitle.innerText= "Tasks: "+ lenth.length;
+        console.log(lenth)
+        document.getElementById('defaultDiv').style.display="block";
+        clearButton.style.display='none'
+        todoDiv.remove();
+        localStorage.clear();
+     })
+    })
+}
