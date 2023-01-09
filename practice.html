@@ -4,107 +4,58 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
-    <input id="action" type="text" placeholder="name"/>
-    <ul id="result"></ul>
-    <button id="button">Enter</button>
+    <main>
+        <h1 class="tittle">Mission - Planner</h1>
+        <div class="formSection">
+            <div class="cradit">
+                <a href="https://sidemenuportfolio.netlify.app/" title="About" target="_blank"><i class="fa-solid fa-question"></i></a>
+            </div>
+            <input id="action" type="text" class="mName" placeholder="name"/>
+            <p class="mNameError" id="mNameError"></p>
+            <input id="missionDescription" style="height: 15vh; margin-top: 20px;" class="mName" type="text" 
+            placeholder="Description">
+            <p class="mDescriptionError" id="mDescriptionError"></p>
+        <div class="timeSection">
+            <h2 class="timing">Initiate at:</h2>
+            <div class="inputes">
+                <!-- <input id="day" class="mtime" type="text"  placeholder="Month" > -->
+                <select class="mtime selectm" id="day" aria-placeholder="Month" >
+                    <option value="">Month</option>
+                    <option value="Jan">January</option>
+                    <option value="Feb">February</option>
+                    <option value="Mar">March</option>
+                    <option value="Apr">April</option>
+                    <option value="May">May</option>
+                    <option value="June">June</option>
+                    <option value="July">July</option>
+                    <option value="Aug">August</option>
+                    <option value="Sep">September</option>
+                    <option value="Oct">October</option>
+                    <option value="Nov">November</option>
+                    <option value="dec">December</option>
+                </select>
+                <input id="hour" class="mtime" type="number" min="0" placeholder="Day" max="31">
+            </div>
+            <p id="timeError" class="mDescriptionError"></p>
+        </div>
+            <button id="button" class="SubmitButton">Enter</button>
+        </div>
+        <div class="results" id="results">
+            <p class="resultTitle" id="resultTitle">Tasks: 0</p>
+            <div class="defaultDiv" id="defaultDiv" style="text-align: center;">
+                <p>No Tasks yet.</p>
+            </div>
+            <ul id="result" class="missionList"></ul>
+            <button class="ClearButton" id="ClearButton"><i class="fa-solid fa-trash-can"></i> Clear All</button>
+        </div>
+    </main>
 
-    <script>
-        const action = document.getElementById('action');
-        const result = document.getElementById('result');
-        const button = document.getElementById('button');
-        
-
-        document.addEventListener('DOMContentLoaded', getItems());
-        button.addEventListener('click', ()=>{
-            // result.innerText =action.value;
-            addLocalStorage(action.value);
-
-            const paraDiv = document.createElement('div')
-                const para = document.createElement('li');
-                const delButton = document.createElement('button');
-                para.innerText = action.value;
-                delButton.innerHTML = 'Delete';
-                delButton.classList.add('delButton')
-                paraDiv.appendChild(para);
-                paraDiv.appendChild(delButton);
-                result.appendChild(paraDiv);
-        })
-        result.addEventListener('click',(e)=>{
-            const items= e.target;
-            const itemsParent1 = items.parentElement;
-            const itemsParent = items.parentElement.children[0].innerText;
-            if(items.classList[0] ==="delButton"){
-                    console.log(itemsParent);
-                    delFunction(itemsParent);
-                    itemsParent1.remove();
-            }
-        })
-
-        //adding local storage
-        function addLocalStorage(data){
-            let names;
-            if(localStorage.getItem('names')=== null){
-                names =[];
-
-            }
-            else{
-                names = JSON.parse(localStorage.getItem('names'));
-            }
-            names.push(data);
-            localStorage.setItem('names', JSON.stringify(names))
-        }
-
-        // getItems Functions
-        function getItems(){
-            let names;
-            if(localStorage.getItem('names')=== null){
-                names =[];
-
-            }
-            else{
-                names = JSON.parse(localStorage.getItem('names'));
-            }
-            names.forEach(function(names){
-                const paraDiv = document.createElement('div')
-                const para = document.createElement('li');
-                const delButton2 = document.createElement('button');
-                para.innerText = names;
-                delButton2.innerHTML = 'Delete';
-                delButton2.classList.add('delButton2')
-                paraDiv.appendChild(para);
-                paraDiv.appendChild(delButton2);
-                result.appendChild(paraDiv);
-            })
-            result.addEventListener('click',(e)=>{
-            const items= e.target;
-            const itemsParent1 = items.parentElement;
-            const itemsParent = items.parentElement.children[0].innerText;
-            if(items.classList[0] ==="delButton2"){
-                    console.log(itemsParent);
-                    delFunction(itemsParent);
-                    itemsParent1.remove();
-            }
-        })
-        }
-
-        //adding Del Function
-        function delFunction(itemsParent){
-            console.log(itemsParent)
-            let names;
-            if(localStorage.getItem('names')=== null){
-                names =[];
-
-            }
-            else{
-                names = JSON.parse(localStorage.getItem('names'));
-            }
-            names.splice(names.indexOf(itemsParent),1)
-            localStorage.setItem('names', JSON.stringify(names))
-        }
-
-    </script>
+    <script src="./script2.js"></script>
+    <!-- fontAwsome -->
+    <script src="https://kit.fontawesome.com/c74447f892.js" crossorigin="anonymous"></script>
 </body>
 </html>
