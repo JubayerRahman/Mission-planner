@@ -73,17 +73,16 @@ submitButton.addEventListener('click', ()=>{
         minuteCount.classList.add('minuteCount')
         // Buttons 
         const complete = document.createElement('button');
-        const trashCan = document.createElement('button');
+        const trashCan0 = document.createElement('button');
         complete.innerHTML= '<i class="fa-solid fa-circle-check"></i>'
-        trashCan.innerHTML= '<i class="fa-solid fa-trash-can"></i>'
+        trashCan0.innerHTML= '<i class="fa-solid fa-trash-can"></i>'
         complete.classList.add('completeButton')
-        trashCan.classList.add('trashButton')
+        trashCan0.classList.add('trashButton1')
         //adding items on subDiv
         dataDiv.appendChild(todo);
         dataDiv.appendChild(todoDes);
         buttonDiv.appendChild(complete);
-        buttonDiv.appendChild(trashCan);
-        trashCan.appendChild(stupitIdeaP);
+        buttonDiv.appendChild(trashCan0);
         timeDiv.appendChild(timeTitle);
         countDownSection.appendChild(hourCount);
         countDownSection.appendChild(divider);
@@ -126,12 +125,13 @@ submitButton.addEventListener('click', ()=>{
             missionList.addEventListener('click',(e)=>{
                 const item = (e.target)
                 const parenttodo= item.parentElement.parentElement;
-                if(item.classList[0]==='trashButton'){
+                if(item.classList[0]==='trashButton1'){
+                    const todoindex = parenttodo.children[0].children[0].innerText;
+                    const itemsParent = todoindex.slice(8);
                     parenttodo.classList.add('delanimation')
                     parenttodo.addEventListener('transitionend',()=>{
                         parenttodo.remove();
                         const missions = document.querySelectorAll('.missions')
-                        // console.log(missions.length)
                         resultTitle.innerText= "Tasks: "+ (missions.length);
                         if(missions.length===0){
                             clearButton.style.display="none"
@@ -206,15 +206,15 @@ function getTodos() {
         missionList.appendChild(todo);
         // Buttons 
         const complete = document.createElement('button');
-        const trashCan = document.createElement('button');
         complete.innerHTML= '<i class="fa-solid fa-circle-check"></i>'
-        trashCan.innerHTML= '<i class="fa-solid fa-trash-can"></i>'
         complete.classList.add('completeButton')
-        trashCan.classList.add('trashButton')
+        // const trashCan = document.createElement('button');
+        // trashCan.innerHTML= '<i class="fa-solid fa-trash-can"></i>'
+        // trashCan.classList.add('trashButton')
         //adding items on subDiv
         dataDiv.appendChild(todo);
         buttonDiv.appendChild(complete);
-        buttonDiv.appendChild(trashCan);
+        // buttonDiv.appendChild(trashCan);
         //adding items on main div
         todoDiv.appendChild(dataDiv);
         todoDiv.appendChild(buttonDiv);
@@ -228,25 +228,6 @@ function getTodos() {
                 parenttodo.classList.add('delanimation')
                 parenttodo.addEventListener('transitionend',()=>{
                     parenttodo.remove();
-                    removeFromeLocal();
-                    function removeFromeLocal(){
-                        if (localStorage.getItem('toNames') === null) {
-                            toNames = [];
-                            todescription = [];
-                            tomonth = [];
-                            todate = [];
-                        }
-                        else {
-                            toNames = JSON.parse(localStorage.getItem('toNames'));
-                            todescription = JSON.parse(localStorage.getItem('todescription'));
-                            tomonth = JSON.parse(localStorage.getItem('tomonth'));
-                            todate = JSON.parse(localStorage.getItem('todate'));
-                        }
-                        const todoindex = todo.innerText;
-                    // console.log(todoindex)
-                    toNames.splice(toNames.indexOf(todoindex), 1);
-                    localStorage.setItem('toNames', JSON.stringify(toNames));
-                }
                 const missions = document.querySelectorAll('.missions')
                     console.log(missions.length)
                     resultTitle.innerText= "Tasks: "+ (missions.length);

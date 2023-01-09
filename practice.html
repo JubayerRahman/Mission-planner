@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="action" type="text" placeholder="name"/>
+    <ul id="result"></ul>
+    <button id="button">Enter</button>
+
+    <script>
+        const action = document.getElementById('action');
+        const result = document.getElementById('result');
+        const button = document.getElementById('button');
+        
+
+        document.addEventListener('DOMContentLoaded', getItems());
+        button.addEventListener('click', ()=>{
+            // result.innerText =action.value;
+            addLocalStorage(action.value);
+
+            const paraDiv = document.createElement('div')
+                const para = document.createElement('li');
+                const delButton = document.createElement('button');
+                para.innerText = action.value;
+                delButton.innerHTML = 'Delete';
+                delButton.classList.add('delButton')
+                paraDiv.appendChild(para);
+                paraDiv.appendChild(delButton);
+                result.appendChild(paraDiv);
+        })
+        result.addEventListener('click',(e)=>{
+            const items= e.target;
+            const itemsParent1 = items.parentElement;
+            const itemsParent = items.parentElement.children[0].innerText;
+            if(items.classList[0] ==="delButton"){
+                    console.log(itemsParent);
+                    delFunction(itemsParent);
+                    itemsParent1.remove();
+            }
+        })
+
+        //adding local storage
+        function addLocalStorage(data){
+            let names;
+            if(localStorage.getItem('names')=== null){
+                names =[];
+
+            }
+            else{
+                names = JSON.parse(localStorage.getItem('names'));
+            }
+            names.push(data);
+            localStorage.setItem('names', JSON.stringify(names))
+        }
+
+        // getItems Functions
+        function getItems(){
+            let names;
+            if(localStorage.getItem('names')=== null){
+                names =[];
+
+            }
+            else{
+                names = JSON.parse(localStorage.getItem('names'));
+            }
+            names.forEach(function(names){
+                const paraDiv = document.createElement('div')
+                const para = document.createElement('li');
+                const delButton2 = document.createElement('button');
+                para.innerText = names;
+                delButton2.innerHTML = 'Delete';
+                delButton2.classList.add('delButton2')
+                paraDiv.appendChild(para);
+                paraDiv.appendChild(delButton2);
+                result.appendChild(paraDiv);
+            })
+            result.addEventListener('click',(e)=>{
+            const items= e.target;
+            const itemsParent1 = items.parentElement;
+            const itemsParent = items.parentElement.children[0].innerText;
+            if(items.classList[0] ==="delButton2"){
+                    console.log(itemsParent);
+                    delFunction(itemsParent);
+                    itemsParent1.remove();
+            }
+        })
+        }
+
+        //adding Del Function
+        function delFunction(itemsParent){
+            console.log(itemsParent)
+            let names;
+            if(localStorage.getItem('names')=== null){
+                names =[];
+
+            }
+            else{
+                names = JSON.parse(localStorage.getItem('names'));
+            }
+            names.splice(names.indexOf(itemsParent),1)
+            localStorage.setItem('names', JSON.stringify(names))
+        }
+
+    </script>
+</body>
+</html>

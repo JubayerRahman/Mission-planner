@@ -84,7 +84,7 @@ ul{
     width: 20%;
     display: flex; justify-content: space-evenly;
 }
-.trashButton{
+.trashButton, .trashButton1{
     color: #A5FFAF; background-color: transparent; font-size: 16px; border: none;cursor: pointer;
 }
 .completeButton{
