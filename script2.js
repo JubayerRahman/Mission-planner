@@ -25,6 +25,7 @@
             addLocalStorage(action.value);
             //remove default result div
             document.getElementById('defaultDiv').style.display="none";
+            clearButton.style.display = 'block'
 
                 const paraDiv = document.createElement('div')
                 paraDiv.classList.add('missions')
@@ -82,6 +83,15 @@
                 missionDescription.value=''
                 minute.value=''
                 hour.value=''
+                //clear Button
+                clearButton.addEventListener('click',()=>{
+                    paraDiv.remove();
+                    clearButton.style.display='none'
+                    document.getElementById('defaultDiv').style.display="block";
+                    const missions = document.querySelectorAll('.missions')
+                    resultTitle.innerText= "Tasks: "+ missions.length;
+                    localStorage.clear();
+                })
 
                 //task counter
                 const missions = document.querySelectorAll('.missions')
@@ -142,6 +152,7 @@
                 names = JSON.parse(localStorage.getItem('names'));
             }
             names.forEach(function(names){
+                clearButton.style.display="block"
                 document.getElementById('defaultDiv').style.display="none";
                 const paraDiv = document.createElement('div')
                 paraDiv.classList.add('missions')
@@ -178,6 +189,15 @@
                     clearButton.style.display="none"
                     defaultDiv.style.display="block"
                 }
+                //clear Button
+                clearButton.addEventListener('click',()=>{
+                    paraDiv.remove();
+                    clearButton.style.display='none'
+                    document.getElementById('defaultDiv').style.display="block";
+                    const missions = document.querySelectorAll('.missions')
+                    resultTitle.innerText= "Tasks: "+ missions.length;
+                    localStorage.clear();
+                })
             })
             result.addEventListener('click',(e)=>{
             const items= e.target;
