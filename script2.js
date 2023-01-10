@@ -20,6 +20,45 @@
                 console.log("full form is not submited")
                 alert("Please, fill the complete form")
             }
+            else if(minute.value>31){
+                alert('Please eter valid date')
+            }
+            else if(hour.value==="Jan" && minute.value>31){
+                alert('Please eter valid date')
+            }
+            else if(hour.value==="Feb" && minute.value>28){
+                alert('Please eter valid date')
+            }
+            else if(hour.value==="Mar" && minute.value>31){
+                alert('Please eter valid date')
+            }
+            else if(hour.value==="Apr" && minute.value>30){
+                alert('Please eter valid date')
+            }
+            else if(hour.value==="May" && minute.value>31){
+                alert('Please eter valid date')
+            }
+            else if(hour.value==="June" && minute.value>30){
+                alert('Please eter valid date')
+            }
+            else if(hour.value==="July" && minute.value>31){
+                alert('Please eter valid date')
+            }
+            else if(hour.value==="Aug" && minute.value>31){
+                alert('Please eter valid date')
+            }
+            else if(hour.value==="Sep" && minute.value>30){
+                alert('Please eter valid date')
+            }
+            else if(hour.value==="Oct" && minute.value>31){
+                alert('Please eter valid date')
+            }
+            else if(hour.value==="Nov" && minute.value>30){
+                alert('Please eter valid date')
+            }
+            else if(hour.value==="dec" && minute.value>31){
+                alert('Please eter valid date')
+            }
             else{
                 // result.innerText =action.value;
             addLocalStorage(action.value);
