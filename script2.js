@@ -20,7 +20,7 @@
                 console.log("full form is not submited")
                 alert("Please, fill the complete form")
             }
-            else if(minute.value>31){
+            else if(minute.value>31 || minute.value<1){
                 alert('Please eter valid date')
             }
             else if(hour.value==="Jan" && minute.value>31){
